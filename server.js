@@ -5,8 +5,12 @@
 var express = require('express');
 var app = express();
 
-var multer  = require('multer');
-var upload = multer({ dest: '/tmp/' });
+//var multer  = require('multer');
+//var upload = multer({ dest: '/tmp/' });
+
+var fileUpload = require('express-fileupload');
+var fs = require("fs");
+app.use(fileUpload());
 
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
@@ -20,12 +24,10 @@ app.get("/", function (request, response) {
 });
 
 // could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
-app.post("/file-metadata", upload.any(), function (request, response, next) {
-  console.log(request.files)
+app.post("/file-metadata", function (request, response) {
+  console.log(request.files);
   response.end("");
 });
 
 // listen for requests :)
-var listener = app.listen(process.env.PORT, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
-});
+var listener = app.listen(process.env.PORT);

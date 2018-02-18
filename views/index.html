@@ -27,8 +27,8 @@
 
     <main>
       <p>Submit a file to view its filesize.</p>
-      <form action="file-metadata" method="post">
-        <input type="file" name="file">
+      <form action="file-metadata" method="post" enctype="multipart/formdata">
+        <input type="file" id="file">
         <button type="submit">Submit</button>
       </form>
       
