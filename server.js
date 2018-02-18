@@ -25,8 +25,8 @@ app.get("/", function (request, response) {
 
 // could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
 app.post("/file-metadata",upload.single("file"), function (request, response) {
-  console.log(request);
-  response.end("");
+  var output = {"size": request.file.size};
+  response.end(JSON.stringify(output));
 });
 
 // listen for requests :)
