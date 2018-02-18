@@ -6,7 +6,7 @@ var express = require('express');
 var app = express();
 
 var multer  = require('multer');
-var upload = multer();
+var upload = multer({ dest: '/tmp/' });
 
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
@@ -20,9 +20,9 @@ app.get("/", function (request, response) {
 });
 
 // could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
-app.post("/file-metadata", upload.array(), function (request, response, next) {
-  
-  response.end(JSON.stringify(request))
+app.post("/file-metadata", upload.any(), function (request, response, next) {
+  console.log(request.files)
+  response.end("");
 });
 
 // listen for requests :)
